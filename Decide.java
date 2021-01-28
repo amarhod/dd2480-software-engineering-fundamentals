@@ -6,49 +6,49 @@ class Decide {
     
     //LIC conditions
     public boolean LIC0() {
-		
+		return false;
 	}
 	public boolean LIC1() {
-		
+		return false;
 	}
 	public boolean LIC2() {
-		
+		return false;
 	}
 	public boolean LIC3() {
-		
+		return false;
 	}
 	public boolean LIC4() {
-		
+		return false;
 	}
 	public boolean LIC5() {
-		
+		return false;
 	}
 	public boolean LIC6() {
-		
+		return false;
 	}
 	public boolean LIC7() {
-		
+		return false;
 	}
 	public boolean LIC8() {
-		
+		return false;
 	}
 	public boolean LIC9() {
-		
+		return false;
 	}
 	public boolean LIC10() {
-		
+		return false;
 	}
 	public boolean LIC11() {
-		
+		return false;
 	}
 	public boolean LIC12() {
-		
+		return false;
 	}
 	public boolean LIC13() {
-		
+		return false;
 	}
 	public boolean LIC14() {
-		
+		return false;
 	}
 	
 	
