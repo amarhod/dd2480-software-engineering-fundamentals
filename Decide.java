@@ -7,10 +7,11 @@ class Decide {
 	
 	
 	//Global variables
-	int NUMPOINTS = 2;
-	double[] X = {0.23, 6.51};
-	double[] Y = {1.31, 2.20};
+	int NUMPOINTS = 3;
+	double[] X = {0.23, 6.51, 0.15};
+	double[] Y = {1.31, 2.20, 1.3};
 	double LENGTH1 = 2.0;
+	double AREA1 = 6.6;
 
     //LIC conditions
     public boolean LIC0() {
@@ -35,6 +36,22 @@ class Decide {
 	}
 
 	public boolean LIC3() {
+		double x1, y1, x2, y2, x3, y3, area;
+		for(int i = 2; i < NUMPOINTS; i++){
+			x1 = X[i-2];
+			y1 = Y[i-2];
+			x2 = X[i-1];
+			y2 = Y[i-1];
+			x3 = X[i];
+			y3 = Y[i];
+			area = (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
+			
+			//System.out.println(area);
+			
+			if(area > AREA1){
+				return true;
+			}
+		}
 		return false;
 	}
 
