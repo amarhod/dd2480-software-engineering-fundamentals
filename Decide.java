@@ -12,6 +12,8 @@ class Decide {
 	double[] Y = {1.31, 2.20, 1.3};
 	double LENGTH1 = 2.0;
 	double AREA1 = 6.6;
+	int PI = 180;
+	int EPSILON = 90;
 
     //LIC conditions
     public boolean LIC0() {
@@ -32,6 +34,33 @@ class Decide {
 	}
 
 	public boolean LIC2() {
+		double x1, y1, x2, y2, x3, y3, angle;
+		for(int i = 2; i < NUMPOINTS; i++){
+			x1 = X[i-2];
+			y1 = Y[i-2];
+			x2 = X[i-1];
+			y2 = Y[i-1];
+			x3 = X[i];
+			y3 = Y[i];
+			
+			angle = Math.toDegrees((Math.atan2(y1-y2, x1-x2) - Math.atan2(y3-y2, x3-x2)));
+			
+			if (angle < 0) {
+				angle += 360;
+			}
+			if (angle > 180) {
+				angle = 360-angle;
+			}
+			
+			//System.out.println(angle);
+			
+			//If P1 or P3 is equal to P2 there is no angle
+			if (!((x1 == x2 && y1 == y2) || (x3 == x2 && y3 == y2))) {
+				if(angle < (PI-EPSILON) || angle > PI+EPSILON ){
+					return true;
+				}
+			}
+		}
 		return false;
 	}
 
