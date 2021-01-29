@@ -16,15 +16,15 @@ class Decide {
 	int EPSILON = 90;
 
     //LIC conditions
-    public boolean LIC0() {
+    public boolean LIC0(double[] X, double[] Y, int numpoints, double length1) {
 		double x1, y1, x2, y2, dist;
-		for(int i = 1; i < NUMPOINTS; i++){
+		for(int i = 1; i < numpoints; i++){
 			x1 = X[i-1];
 			y1 = Y[i-1];
 			x2 = X[i];
 			y2 = Y[i];
 			dist = Point2D.distance(x1,y1,x2,y2);
-			if(dist > LENGTH1){return true;}
+			if(dist > length1){return true;}
 		}
 		return false;
 	}
