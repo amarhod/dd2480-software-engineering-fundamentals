@@ -13,6 +13,13 @@ class DecideTest {
 		assert true == decide.LIC0(X1, Y1, 2, 4.4) : "LIC0 (true) Failed";
 		double[] X2 = {0.23, 1.51};
 		double[] Y2 = {1.31, 2.20};
-		assert false == decide.LIC0(X2, Y2, 2, 1.56) : "LIC0 (false) Failed";				
+		assert false == decide.LIC0(X2, Y2, 2, 1.56) : "LIC0 (false) Failed";	
+
+		double[] LIC4_X1 = {0, -1, 0, 0 ,1, 1};
+		double[] LIC4_Y1 = {0, 0, -1, 1, 0,-1};
+		assert true == decide.LIC4(LIC4_X1, LIC4_Y1, 5, 3) : "LIC0 (true) Failed";
+		double[] LIC4_X2 = {0, 1, 0, 2 ,1, 1};
+		double[] LIC4_Y2 = {0, 0, -1, 2, 0,-1};
+		assert false == decide.LIC4(LIC4_X2, LIC4_Y2, 5, 3) : "LIC0 (false) Failed";			
 	}
 }

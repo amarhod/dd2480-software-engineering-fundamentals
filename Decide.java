@@ -84,7 +84,48 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC4() {
+	public boolean LIC4(double[] X, double[] Y, int q_pts, int quads) {
+		Queue<Integer> queue = new LinkedList<Integer>();
+		
+		for(int i = 0; i<X.length; i++) {
+			double x1 = X[i];
+			double y1 = Y[i];
+			
+			if (x1 > 0) {
+		        if (y1 >= 0){
+		        	queue.add(1);
+		        }
+	        	else{
+	        		queue.add(4);
+	        	}
+	        }
+		    else if (x1 < 0){
+		        if (y1 >= 0){
+		        	queue.add(2);
+		        }
+		        else{
+		        	queue.add(3);
+		        }
+			}
+		    else {
+		    	if (y1 >= 0){
+		    		queue.add(1);
+		        }
+	        	else{
+	        		queue.add(3);
+	        	}
+		    }
+			
+			if (queue.size() > q_pts){
+				queue.poll();
+			}
+			//System.out.println("Quadrants are: "+queue.toString());
+			//System.out.println("Unique count: "+queue.stream().distinct().count());
+			if(queue.stream().distinct().count() > quads) {
+				return true;
+			}
+		}
+			
 		return false;
 	}
 
