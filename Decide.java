@@ -129,7 +129,17 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC5() {
+	public boolean LIC5(double[] X, double[] Y) {
+		double x1, x2, diff
+		for (int i = 0; i < NUMPOINTS; i++) {
+			x1 = X[i];
+			x2 = X[i+1];
+		        diff = x2 - x1;
+
+		        if(diff < 0){
+				return true;
+			}
+		}
 		return false;
 	}
 
