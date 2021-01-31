@@ -168,7 +168,24 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC8() {
+	public boolean LIC8(double[] X, double[] Y, int numpoints, double radius1, int a_pts, int b_pts) {
+		if(numpoints < 5){return false;}
+		double x1, y1, x2, y2, x3, y3;
+		double[] dists = new double[3];
+		for(int i = 0; i < numpoints-a_pts-b_pts-2; i++){
+			x1 = X[i];
+			y1 = Y[i];
+			x2 = X[i+a_pts+1];
+			y2 = Y[i+a_pts+1];
+			x3 = X[i+a_pts+b_pts+2];
+			y3 = Y[i+a_pts+b_pts+2];
+			dists[0] = Point2D.distance(x1,y1,x2,y2);
+			dists[1] = Point2D.distance(x1,y1,x3,y3);
+			dists[2] = Point2D.distance(x2,y2,x3,y3);
+			for(double dist: dists){
+				if(dist/2 > radius1){return true;}
+			}
+		}
 		return false;
 	}
 
