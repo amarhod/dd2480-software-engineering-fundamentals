@@ -189,7 +189,19 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC9() {
+	public boolean LIC9(double[] X, double[] Y, int numpoints, double epilson, int c_pts, int d_pts) {
+		if(numpoints < 5){return false;}
+		double x1, y1, x2, y2, x3, y3, angle;
+		for(int i = 0; i < numpoints-c_pts-d_pts-2; i++){
+			x1 = X[i];
+			y1 = Y[i];
+			x2 = X[i+c_pts+1];
+			y2 = Y[i+c_pts+1];
+			x3 = X[i+c_pts+d_pts+2];
+			y3 = Y[i+c_pts+d_pts+2];
+			angle = (Math.toDegrees((Math.atan2(y1-y2, x1-x2) - Math.atan2(y3-y2, x3-x2))) + 360) % 360;
+			if((angle < Math.toDegrees(Math.PI - epilson)) || (angle > Math.toDegrees(Math.PI + epilson))){return true;}
+		}
 		return false;
 	}
 
