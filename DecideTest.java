@@ -44,5 +44,12 @@ class DecideTest {
 		double[] LIC9_X2 = {0, 0, 0, 0, 1.0};
 		double[] LIC9_Y2 = {0, 0, 1.0, 0, 1.0};
 		assert false == decide.LIC9(LIC9_X2, LIC9_Y2, 5, Math.PI/2, 1, 1) : "LIC9 (false) Failed";	
+
+		double[] LIC10_X1 = {0, 0, 1.0, 0, 2.0};
+		double[] LIC10_Y1 = {0, 0, 2.0, 0, 0};
+		assert true == decide.LIC10(LIC10_X1, LIC10_Y1, 5, 1.95, 1, 1) : "LIC10 (true) Failed";
+		double[] LIC10_X2 = {-2.0, 0, -1.0, 0, 0};
+		double[] LIC10_Y2 = {0, 0, -2.0, 0, 0};
+		assert false == decide.LIC10(LIC10_X2, LIC10_Y2, 5, 2.0, 1, 1) : "LIC10 (false) Failed";	
 	}
 }
