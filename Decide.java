@@ -18,6 +18,8 @@ class Decide {
 
     //LIC conditions
     public boolean LIC0(double[] X, double[] Y, int numpoints, double length1) {
+		//There exists at least one set of two consecutive data points that are a distance 
+		//greater than the length, LENGTH1, apart.
 		double x1, y1, x2, y2, dist;
 		for(int i = 1; i < numpoints; i++){
 			x1 = X[i-1];
@@ -31,6 +33,8 @@ class Decide {
 	}
 
 	public boolean LIC1(double[] X, double[] Y, int numpoints, double radius1) {
+		//There exists at least one set of three consecutive data points that cannot all be contained 
+		//within or on a circle of radius RADIUS1.
 		double x1, y1, x2, y2, x3, y3;
 		double[] dists = new double[3];
 		for(int i = 2; i < numpoints; i++){
@@ -51,6 +55,7 @@ class Decide {
 	}
 
 	public boolean LIC2(double[] X, double[] Y, int numpoints, double pi, double epsilon) {
+		// pi - epsilon < Angle between any three points < pi + epsilon
 		double x1, y1, x2, y2, x3, y3, angle;
 		for(int i = 2; i < numpoints; i++){
 			x1 = X[i-2];
@@ -82,6 +87,8 @@ class Decide {
 	}
 
 	public boolean LIC3() {
+		//There exists at least one set of three consecutive data points that are the vertices of a triangle
+		//with area greater than AREA1
 		double x1, y1, x2, y2, x3, y3, area;
 		for(int i = 2; i < NUMPOINTS; i++){
 			x1 = X[i-2];
@@ -102,6 +109,7 @@ class Decide {
 	}
 
 	public boolean LIC4(double[] X, double[] Y, int q_pts, int quads) {
+		//There exists at least one set of Q PTS consecutive data points that lie in more than QUADS
 		Queue<Integer> queue = new LinkedList<Integer>();
 		
 		for(int i = 0; i<X.length; i++) {
@@ -147,6 +155,7 @@ class Decide {
 	}
 
 	public boolean LIC5(double[] X, double[] Y) {
+		//There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such that X[j] - X[i] < 0. (where i = j-1)
 		double x1, x2, diff;
 		for (int i = 0; i < NUMPOINTS; i++) {
 			x1 = X[i];
@@ -161,14 +170,17 @@ class Decide {
 	}
 
 	public boolean LIC6() {
+		//one point is further away than the distance between the first and the last point in any sequence of points.
 		return false;
 	}
 
 	public boolean LIC7() {
+		// K_PTS consecutive points with distance > length1
 		return false;
 	}
 
 	public boolean LIC8(double[] X, double[] Y, int numpoints, double radius1, int a_pts, int b_pts) {
+		// There exists three data points seperated by A_PTS and B_PTS not within a circle of radius1
 		if(numpoints < 5){return false;}
 		double x1, y1, x2, y2, x3, y3;
 		double[] dists = new double[3];
@@ -190,6 +202,7 @@ class Decide {
 	}
 
 	public boolean LIC9(double[] X, double[] Y, int numpoints, double epilson, int c_pts, int d_pts) {
+		// There exists three points seperated by C_PTS and D_PTS apart which have pi - epsilon < angle < pi + epsilon
 		if(numpoints < 5){return false;}
 		double x1, y1, x2, y2, x3, y3, angle;
 		for(int i = 0; i < numpoints-c_pts-d_pts-2; i++){
@@ -206,6 +219,7 @@ class Decide {
 	}
 
 	public boolean LIC10(double[] X, double[] Y, int numpoints, double area1, int e_pts, int f_pts) {
+		// There exists three points seperated by E_PTS and F_PTS which form a triangle with area > area1
 		if(numpoints < 5){return false;}
 		double x1, y1, x2, y2, x3, y3, area;
 		for(int i = 0; i < numpoints-e_pts-f_pts-2; i++){
@@ -222,18 +236,25 @@ class Decide {
 	}
 
 	public boolean LIC11() {
+		// There exists a set of two points seperated by G_PTS x[i + G_PTS] - x[i] < 0
 		return false;
 	}
 
 	public boolean LIC12() {
+		// There exists a set of two points seperated by K_PTS which are distance greater than LENGTH1
+		// AND one set of two points (may be a different set) such that they are a distance less than LENGTH2
 		return false;
 	}
 
 	public boolean LIC13() {
+		// There exists a set of three points seperated by A_PTS and B_PTS that can not be contained in a circle of radius1
+		// AND one set of three points (may be a different set) such that the can be contained in or on the radius of a circle of radius2
 		return false;
 	}
 
 	public boolean LIC14() {
+		// There exists one set of three points seperated by E_PTS and F_PTS that form a  triangle with area > area1
+		// AND one set of three points (may be a different set) that form a triangle < area2
 		return false;
 	}
 	
