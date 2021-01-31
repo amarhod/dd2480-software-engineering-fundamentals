@@ -31,11 +31,18 @@ class DecideTest {
 		
 
 
-		double[] LIC8_X1 = {-1.0, 0.0 ,0.0, 0.0, 1.0, 0.0, 0.0};
+		double[] LIC8_X1 = {-1.0, 0 ,0, 0, 1.0, 0, 0};
 		double[] LIC8_Y1 = {0, 0, 0, 0, 0, 0, 0};
 		assert true == decide.LIC8(LIC8_X1, LIC8_Y1, 7, 0.95, 1, 1) : "LIC8 (true) Failed";
-		double[] LIC8_X2 = {-1.0, 1.5 ,0.0, 0.0, 1.0, -0.5, 0.0};
+		double[] LIC8_X2 = {-1.0, 1.5, 0, 0, 1.0, -0.5, 0};
 		double[] LIC8_Y2 = {0, 0, 0, 0, 0, 0, 0};
-		assert false == decide.LIC8(LIC8_X2, LIC8_Y2, 7, 1.0, 1, 1) : "LIC8 (false) Failed";	
+		assert false == decide.LIC8(LIC8_X2, LIC8_Y2, 7, 1.0, 1, 1) : "LIC8 (false) Failed";
+
+		double[] LIC9_X1 = {0, 0, 0, 0, 1.0};
+		double[] LIC9_Y1 = {0, 0, 1.0, 0, 1.0};
+		assert true == decide.LIC9(LIC9_X1, LIC9_Y1, 5, Math.PI/2.1, 1, 1) : "LIC9 (true) Failed";
+		double[] LIC9_X2 = {0, 0, 0, 0, 1.0};
+		double[] LIC9_Y2 = {0, 0, 1.0, 0, 1.0};
+		assert false == decide.LIC9(LIC9_X2, LIC9_Y2, 5, Math.PI/2, 1, 1) : "LIC9 (false) Failed";	
 	}
 }
