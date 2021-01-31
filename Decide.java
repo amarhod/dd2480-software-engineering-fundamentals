@@ -205,7 +205,19 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC10() {
+	public boolean LIC10(double[] X, double[] Y, int numpoints, double area1, int e_pts, int f_pts) {
+		if(numpoints < 5){return false;}
+		double x1, y1, x2, y2, x3, y3, area;
+		for(int i = 0; i < numpoints-e_pts-f_pts-2; i++){
+			x1 = X[i];
+			y1 = Y[i];
+			x2 = X[i+e_pts+1];
+			y2 = Y[i+e_pts+1];
+			x3 = X[i+e_pts+f_pts+2];
+			y3 = Y[i+e_pts+f_pts+2];
+			area = Math.abs((x1*(y2-y3) + x2*(y3-y1) + x3*(y1-y2))/2);
+			if(area > area1){return true;}
+		}
 		return false;
 	}
 
