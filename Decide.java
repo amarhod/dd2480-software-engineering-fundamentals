@@ -1,4 +1,5 @@
 import java.awt.geom.Point2D;
+import java.util.*;
 
 
 class Decide {
@@ -29,7 +30,23 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC1() {
+	public boolean LIC1(double[] X, double[] Y, int numpoints, double radius1) {
+		double x1, y1, x2, y2, x3, y3;
+		double[] dists = new double[3];
+		for(int i = 2; i < numpoints; i++){
+			x1 = X[i-2];
+			y1 = Y[i-2];
+			x2 = X[i-1];
+			y2 = Y[i-1];
+			x3 = X[i];
+			y3 = Y[i];
+			dists[0] = Point2D.distance(x1,y1,x2,y2);
+			dists[1] = Point2D.distance(x1,y1,x3,y3);
+			dists[2] = Point2D.distance(x2,y2,x3,y3);
+			for(double dist: dists){
+				if(dist/2 > radius1){return true;}
+			}
+		}
 		return false;
 	}
 
@@ -130,7 +147,7 @@ class Decide {
 	}
 
 	public boolean LIC5(double[] X, double[] Y) {
-		double x1, x2, diff
+		double x1, x2, diff;
 		for (int i = 0; i < NUMPOINTS; i++) {
 			x1 = X[i];
 			x2 = X[i+1];
