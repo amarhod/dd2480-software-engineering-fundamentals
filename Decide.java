@@ -50,9 +50,9 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC2() {
+	public boolean LIC2(double[] X, double[] Y, int numpoints, double pi, double epsilon) {
 		double x1, y1, x2, y2, x3, y3, angle;
-		for(int i = 2; i < NUMPOINTS; i++){
+		for(int i = 2; i < numpoints; i++){
 			x1 = X[i-2];
 			y1 = Y[i-2];
 			x2 = X[i-1];
@@ -69,11 +69,11 @@ class Decide {
 				angle = 360-angle;
 			}
 			
-			//System.out.println(angle);
+			System.out.println(angle);
 			
 			//If P1 or P3 is equal to P2 there is no angle
 			if (!((x1 == x2 && y1 == y2) || (x3 == x2 && y3 == y2))) {
-				if(angle < (PI-EPSILON) || angle > PI+EPSILON ){
+				if(angle < (pi-epsilon) || angle > pi+epsilon ){
 					return true;
 				}
 			}
