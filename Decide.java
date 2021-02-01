@@ -405,7 +405,32 @@ class Decide {
 	public boolean LIC13(double[] X, double[] Y, int numpoints, double radius1, double radius2, int a_pts, int b_pts) {
 		// There exists a set of three points seperated by A_PTS and B_PTS that can not be contained in a circle of radius1
 		// AND one set of three points (may be a different set) such that the can be contained in or on the radius of a circle of radius2
+		boolean firstCond = false; //both these conditions need to be true for the LIC
+		boolean secondCond = false; 
+		double x1, y1, x2, y2, x3, y3;
 		
+		for (int i = 0; i < numpoints - a_pts - b_pts - 2; i++) {
+			x1 = X[i];
+			y1 = Y[i];
+			x2 = X[i + a_pts + 1];
+			y2 = Y[i + a_pts + 1];
+			x3 = X[i+ a_pts + b_pts + 2];
+			y3 = Y[i+ a_pts + b_pts + 2];
+			
+
+			
+			if (smallestRadius(x1,y1,x2,y2,x3,y3) > radius1) {
+				firstCond = true;
+			}
+			if (smallestRadius(x1,y1,x2,y2,x3,y3) < radius2) {
+				secondCond = true;
+			}
+		}
+		
+		if (firstCond && secondCond) {
+			return true;
+		}
+	
 		return false;
 	}
 

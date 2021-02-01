@@ -112,5 +112,14 @@ class DecideTest {
 		double[] LIC12_X3 = {0, 1, 2, 3, 4};
 		double[] LIC12_Y3 = {0, 0, 0, 0, 0};
 		assert false == decide.LIC12(LIC12_X3, LIC12_Y3, 5, 5, 100, 2) : "LIC12 (false) Failed";
+		
+		//LIC13
+		//a_pts = 1, b_pts = 1, radius1 = 10 radius2 = 100
+		double[] LIC13_X1 = {0, 1, 0, 0, 10};
+		double[] LIC13_Y1 = {0, 50, 2, 0, 50};
+		assert true == decide.LIC13(LIC13_X1, LIC13_Y1, 5, 10, 100, 1, 1) : "LIC13 (true) Failed";
+		double[] LIC13_X2 = {2000, 0, 1, 0, 0, 1000, 5000};
+		double[] LIC13_Y2 = {2000, 0, 50, 2, 0, 104, 5000};
+		assert false == decide.LIC13(LIC13_X2, LIC13_Y2, 7, 10, 100, 1, 1) : "LIC13 (false) Failed";
 	}
 }
