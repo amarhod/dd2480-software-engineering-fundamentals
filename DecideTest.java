@@ -67,6 +67,16 @@ class DecideTest {
 		double[] LIC6_Y2 = {0, 0, -2, 0, 0, 5};
 		assert false == decide.LIC6(LIC6_X2, LIC6_Y2, 4, 2) : "LIC6 (false) Failed";
 		
+		//LIC7
+		//k_pts = 1, length1 = 10
+		double[] LIC7_X1 = {0, -1, 0, 15 ,1, 0};
+		double[] LIC7_Y1 = {0, 0, -1, 0, 0,-1};
+		assert true == decide.LIC7(LIC7_X1, LIC7_Y1, 6, 10, 1) : "LIC7 (true) Failed";
+		double[] LIC7_X2 = {0, -1, 0, 8 ,1, 0};
+		double[] LIC7_Y2 = {0, 0, -1, 0, 0,-1};
+		assert false == decide.LIC7(LIC7_X2, LIC7_Y2, 6, 10, 1) : "LIC7 (false) Failed";
+		
+		
 		//LIC8
 		double[] LIC8_X1 = {-1.0, 0 ,0, 0, 1.0, 0, 0};
 		double[] LIC8_Y1 = {0, 0, 0, 0, 0, 0, 0};
@@ -129,7 +139,7 @@ class DecideTest {
 		assert true == decide.LIC14(LIC14_X1, LIC14_Y1, 5, 5, 100, 1, 1) : "LIC14 (true) Failed";
 		double[] LIC14_X2 = {0, 0, 4, 0, 0};
 		double[] LIC14_Y2 = {0, 0, 0, 0, 500}; //area 4*500/2 = 1000
-		assert false == decide.LIC14(LIC14_X2, LIC14_Y2, 5, 5, 100, 1, 1) : "LIC14 (true) Failed";
+		assert false == decide.LIC14(LIC14_X2, LIC14_Y2, 5, 5, 100, 1, 1) : "LIC14 (false) Failed";
 		
 	}
 }

@@ -290,8 +290,22 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC7() {
+	public boolean LIC7(double[] X, double[] Y, int numpoints, double length1, int k_pts) {
 		// there exists a set of two points seperated by K_PTS consecutive points with distance > length1
+		
+		double x1, y1, x2, y2;
+		
+		for (int i = 0; i < numpoints - k_pts - 1; i++) {
+			x1 = X[i];
+			y1 = Y[i];
+			x2 = X[i + k_pts + 1];
+			y2 = Y[i + k_pts + 1];
+			
+			if (Point2D.distance(x1,y1,x2,y2) > length1) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 
