@@ -291,7 +291,7 @@ class Decide {
 	}
 
 	public boolean LIC7() {
-		// K_PTS consecutive points with distance > length1
+		// there exists a set of two points seperated by K_PTS consecutive points with distance > length1
 		return false;
 	}
 
@@ -405,6 +405,7 @@ class Decide {
 	public boolean LIC13(double[] X, double[] Y, int numpoints, double radius1, double radius2, int a_pts, int b_pts) {
 		// There exists a set of three points seperated by A_PTS and B_PTS that can not be contained in a circle of radius1
 		// AND one set of three points (may be a different set) such that the can be contained in or on the radius of a circle of radius2
+		
 		boolean firstCond = false; //both these conditions need to be true for the LIC
 		boolean secondCond = false; 
 		double x1, y1, x2, y2, x3, y3;
@@ -434,9 +435,36 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC14() {
+	public boolean LIC14(double[] X, double[] Y, int numpoints, double area1, double area2, int e_pts, int f_pts) {
 		// There exists one set of three points seperated by E_PTS and F_PTS that form a  triangle with area > area1
 		// AND one set of three points (may be a different set) that form a triangle < area2
+		
+		boolean firstCond = false; //both these conditions need to be true for the LIC
+		boolean secondCond = false; 
+		double x1, y1, x2, y2, x3, y3, area;
+		
+		for (int i = 0; i < numpoints - e_pts - f_pts - 2; i++) {
+			x1 = X[i];
+			y1 = Y[i];
+			x2 = X[i + e_pts + 1];
+			y2 = Y[i + e_pts + 1];
+			x3 = X[i+ e_pts + f_pts + 2];
+			y3 = Y[i+ e_pts + f_pts + 2];
+			
+			area = (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
+			
+			if (area > area1) {
+				firstCond = true;
+			}
+			if (area < area2) {
+				secondCond = true;
+			}
+		}
+		
+		if (firstCond && secondCond) {
+			return true;
+		}
+		
 		return false;
 	}
 	
