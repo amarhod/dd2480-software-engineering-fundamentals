@@ -91,6 +91,14 @@ class DecideTest {
 		double[] LIC10_Y2 = {0, 0, -2.0, 0, 0};
 		assert false == decide.LIC10(LIC10_X2, LIC10_Y2, 5, 2.0, 1, 1) : "LIC10 (false) Failed";	
 		
+		//LIC11
+		double[] LIC11_X1 = {0, 1, 2, 3 ,-1, 0};
+		double[] LIC11_Y1 = {0, 0, -1, 0, 0,-1};
+		assert true == decide.LIC11(LIC11_X1, LIC11_Y1, 3) : "LIC11 (true) Failed";
+		double[] LIC11_X2 = {0, 1, 2, 3 ,4, 5};
+		double[] LIC11_Y2 = {0, 0, -2, 0, 0, 5};
+		assert false == decide.LIC11(LIC11_X2, LIC11_Y2, 1) : "LIC11 (false) Failed";		
+
 		//LIC12
 		//k_pts = 2, length1 = 5, length2 = 100
 		double[] LIC12_X1 = {0, 1, 0, 0, 10};

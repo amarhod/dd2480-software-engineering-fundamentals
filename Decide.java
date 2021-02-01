@@ -347,9 +347,27 @@ class Decide {
 		}
 		return false;
 	}
-
-	public boolean LIC11() {
-		// There exists a set of two points seperated by G_PTS x[i + G_PTS] - x[i] < 0
+	
+	// There exists a set of two points seperated by G_PTS x[i + G_PTS] - x[i] < 0
+	public boolean LIC11(double[] X, double[] Y, int g_pts) {
+		double x1, x2;
+		
+		//If NUMPOINTS < 3 the condition is false
+		if (X.length < 3) {
+			return false;
+		}
+		
+		//System.out.println(Arrays.toString(X));
+		
+		for (int i = 0; i < X.length - g_pts - 1; i++) {
+			x1 = X[i];
+			x2 = X[i + g_pts + 1];
+			
+			//System.out.println("x1: " +x1 +" x2: "+ x2);
+			if ((x2-x1) < 0) {
+				return true;
+			}
+		}
 		return false;
 	}
 
