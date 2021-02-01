@@ -168,9 +168,85 @@ class Decide {
 		}
 		return false;
 	}
-
-	public boolean LIC6() {
-		//one point is further away than the distance between the first and the last point in any sequence of points.
+	
+	//one point is further away than the distance between the first and the last point in any sequence of points.
+	public boolean LIC6(double[] X, double[] Y, int n_pts, double dist) {
+		Queue Xqueue = new LinkedList();
+		Queue Yqueue = new LinkedList();
+		double[] Xarray = new double[n_pts];
+		double[] Yarray = new double[n_pts];
+		
+		for(int i = 0; i<X.length; i++) {
+			Xqueue.add(X[i]);
+			Yqueue.add(Y[i]);
+			
+			if (Xqueue.size() > n_pts){
+				Xqueue.poll();
+				Yqueue.poll();
+			}
+			
+			if (Xqueue.size() == n_pts) {
+				
+				Queue Xtemp = new LinkedList<>(Xqueue);
+				Queue Ytemp = new LinkedList<>(Yqueue);
+				
+				for (int ii = 0; ii<n_pts; ii++) {
+					Xarray[ii] = (double) Xtemp.poll();
+					Yarray[ii] = (double) Ytemp.poll();
+				}
+				
+				double x1 = Xarray[0];
+				double y1 = Yarray[0];
+				double x2 = Xarray[n_pts-1];
+				double y2 = Yarray[n_pts-1];
+				double x, y, A, B, C, D, E, F, dot, len_sq, thisDist;
+				
+				if (x1 == x2 && y1 == y2) {
+					for (int ii = 1; ii< n_pts-1; ii++) {
+						
+						x = Xarray[ii];
+						y = Yarray[ii];
+						
+				        thisDist = Math.sqrt(Math.pow(x1-x, 2)+Math.pow(y1-y, 2));
+						
+				        //System.out.println(""+Xqueue.toString());
+				        //System.out.println(""+Yqueue.toString());
+				        //System.out.println("Is the distance: "+ thisDist+" bigger than our target? "+dist);
+						
+						if(thisDist > dist) {
+							return true;
+						}
+					}
+				}
+				else {
+					for (int ii = 1; ii< n_pts-1; ii++) {
+						
+						x = Xarray[ii];
+						y = Yarray[ii];
+				
+				        A = x - x1; 
+				        B = y - y1;
+				        C = x2 - x1; 
+				        D = y2 - y1;
+				        E = -D;
+				        F = C;
+				        dot = A * E + B * F;
+				        len_sq = E * E + F * F;
+				        
+				        thisDist = Math.abs(dot) / Math.sqrt(len_sq);
+						
+				        //System.out.println(""+Xqueue.toString());
+				        //System.out.println(""+Yqueue.toString());
+				        //System.out.println("Is the distance: "+ thisDist+" bigger than our target? "+dist);
+						
+						if(thisDist > dist) {
+							return true;
+						}
+					}
+				}
+			}
+		}
+				
 		return false;
 	}
 
