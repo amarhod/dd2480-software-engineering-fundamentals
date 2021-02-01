@@ -74,7 +74,7 @@ class Decide {
 				angle = 360-angle;
 			}
 			
-			System.out.println(angle);
+			//System.out.println(angle);
 			
 			//If P1 or P3 is equal to P2 there is no angle
 			if (!((x1 == x2 && y1 == y2) || (x3 == x2 && y3 == y2))) {
@@ -240,9 +240,34 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC12() {
+	public boolean LIC12(double[] X, double[] Y, int numpoints, double length1, double length2, int k_pts) {
 		// There exists a set of two points seperated by K_PTS which are distance greater than LENGTH1
 		// AND one set of two points (may be a different set) such that they are a distance less than LENGTH2
+		
+		boolean firstCond = false; //both these conditions need to be true for the LIC
+		boolean secondCond = false; 
+		double x1, y1, x2, y2, distance;
+		
+		for (int i = 0; i < numpoints - k_pts - 1; i++) {
+			x1 = X[i];
+			y1 = Y[i];
+			x2 = X[i + k_pts + 1];
+			y2 = Y[i + k_pts + 1];
+			
+			distance = Point2D.distance(x1,y1,x2,y2);
+			
+			if (distance > length1) {
+				firstCond = true;
+			}
+			if (distance < length2) {
+				secondCond = true;
+			}
+		}
+		
+		if (firstCond && secondCond) {
+			return true;
+		}
+		
 		return false;
 	}
 

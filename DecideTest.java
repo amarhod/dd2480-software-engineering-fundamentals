@@ -76,5 +76,19 @@ class DecideTest {
 		double[] LIC10_X2 = {-2.0, 0, -1.0, 0, 0};
 		double[] LIC10_Y2 = {0, 0, -2.0, 0, 0};
 		assert false == decide.LIC10(LIC10_X2, LIC10_Y2, 5, 2.0, 1, 1) : "LIC10 (false) Failed";	
+		
+		//LIC12
+		//k_pts = 2, length1 = 5, length2 = 100
+		double[] LIC12_X1 = {0, 1, 0, 0, 10};
+		double[] LIC12_Y1 = {0, 0, 2, 0, 10};
+		assert true == decide.LIC12(LIC12_X1, LIC12_Y1, 5, 5, 100, 2) : "LIC12 (true) Failed";
+		//only greater than length1, but no two points closer than 100
+		double[] LIC12_X2 = {0, 100, 200, 300, 400};
+		double[] LIC12_Y2 = {0, 0, 0, 0, 0};
+		assert false == decide.LIC12(LIC12_X2, LIC12_Y2, 5, 5, 100, 2) : "LIC12 (false) Failed";
+		//only points closer than length2, but no two points further than 5
+		double[] LIC12_X3 = {0, 1, 2, 3, 4};
+		double[] LIC12_Y3 = {0, 0, 0, 0, 0};
+		assert false == decide.LIC12(LIC12_X3, LIC12_Y3, 5, 5, 100, 2) : "LIC12 (false) Failed";
 	}
 }
