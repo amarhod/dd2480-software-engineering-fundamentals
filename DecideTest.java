@@ -9,6 +9,14 @@ class DecideTest {
 
 		Decide decide = new Decide();
 		
+		//smallestRadius test
+		//obtuse case
+		double smallest = decide.smallestRadius(0,0,50,10,100,0);
+		assert ( smallest <= 50.1 && smallest >= 49.9) : "smallest radius not within expected range for obtuse case";
+		//acute case
+		smallest = decide.smallestRadius(0,0,1,2,2,0);
+		assert ( smallest <= 1.26 && smallest >= 1.24) : "smallest radius not within expected range for acute case";
+		
 		//LIC0
 		double[] X1 = {0.23, 6.51};
 		double[] Y1 = {1.31, 2.20};
@@ -18,7 +26,7 @@ class DecideTest {
 		assert false == decide.LIC0(X2, Y2, 2, 1.56) : "LIC0 (false) Failed";	
 		
 		//LIC1
-		double[] LIC1_X1 = {-1.0, 0.0, 1.0};
+		double[] LIC1_X1 = {-1.0, 0.0, 1};
 		double[] LIC1_Y1 = {0, 0, 0};
 		assert true == decide.LIC1(LIC1_X1, LIC1_Y1, 3, 0.95) : "LIC1 (true) Failed";
 		double[] LIC1_X2 = {-1.0, 0.0, 1.0};

@@ -15,6 +15,49 @@ class Decide {
 	double AREA1 = 6.6;
 	int PI = 180;
 	int EPSILON = 90;
+	
+	public double smallestRadius(double x1, double y1, double x2, double y2, double x3, double y3) {
+		//helper function that returns the smallest possible circle that contains three points in euclidean space
+		
+		double radiusAcute; //the smallest radius if the triangle is acute
+		double radiusObtuse; // the smallest radius if the triangle is obtuse
+		
+		//circumcenter, center of the smallest radius for acute triangles
+		// https://en.wikipedia.org/wiki/Circumscribed_circle
+		
+		double d = 2*(x1*(y2 - y3) + x2*(y3 - y1) + x3*(y1 - y2));
+		double ux = (1/d) * ( (x1*x1 + y1*y1)*(y2 - y3) + (x2*x2 + y2*y2)*(y3 - y1) + (x3*x3 + y3*y3)*(y1 - y2) );
+		double uy = (1/d) * ( (x1*x1 + y1*y1)*(x3 - x2) + (x2*x2 + y2*y2)*(x1 - x3) + (x3*x3 + y3*y3)*(x2 - x1) );
+		
+		radiusAcute = Point2D.distance(x1,y1,ux,uy); 
+		
+		//calculate the point between the two points with longest distance between them
+		double cx;
+		double cy;
+		
+		double dist12 = Point2D.distance(x1,y1,x2,y2);
+		double dist13 = Point2D.distance(x1,y1,x3,y3);
+		double dist23 = Point2D.distance(x2,y2,x3,y3);
+		
+		if (dist12 >= dist13 && dist12 >= dist23) {
+			cx = (x1 + x2)*0.5;
+			cy = (y1 + y2)*0.5;
+			radiusObtuse = Point2D.distance(x1,y1,cx,cy);
+		} else if (dist13 >= dist12 && dist13 >= dist23) {
+			cx = (x1 + x3)*0.5;
+			cy = (y1 + y3)*0.5;
+			radiusObtuse = Point2D.distance(x1,y1,cx,cy);
+		} else {
+			cx = (x2 + x3)*0.5;
+			cy = (y2 + y3)*0.5;
+			radiusObtuse = Point2D.distance(x2,y2,cx,cy);
+		}
+		//obtuse angle test, a^2 + b^2 < c^2
+		if (dist12*dist12 + dist13*dist13 < dist23*dist23 || dist23*dist23 + dist13*dist13 < dist12*dist12 || dist12*dist12 + dist23*dist23 < dist13*dist13) {
+			return radiusObtuse;
+		}
+		return radiusAcute;
+	}
 
     //LIC conditions
     public boolean LIC0(double[] X, double[] Y, int numpoints, double length1) {
@@ -44,12 +87,9 @@ class Decide {
 			y2 = Y[i-1];
 			x3 = X[i];
 			y3 = Y[i];
-			dists[0] = Point2D.distance(x1,y1,x2,y2);
-			dists[1] = Point2D.distance(x1,y1,x3,y3);
-			dists[2] = Point2D.distance(x2,y2,x3,y3);
-			for(double dist: dists){
-				if(dist/2 > radius1){return true;}
-			}
+
+			if(smallestRadius(x1,y1,x2,y2,x3,y3) > radius1){return true;}
+
 		}
 		return false;
 	}
@@ -267,12 +307,9 @@ class Decide {
 			y2 = Y[i+a_pts+1];
 			x3 = X[i+a_pts+b_pts+2];
 			y3 = Y[i+a_pts+b_pts+2];
-			dists[0] = Point2D.distance(x1,y1,x2,y2);
-			dists[1] = Point2D.distance(x1,y1,x3,y3);
-			dists[2] = Point2D.distance(x2,y2,x3,y3);
-			for(double dist: dists){
-				if(dist/2 > radius1){return true;}
-			}
+
+			if(smallestRadius(x1,y1,x2,y2,x3,y3) > radius1){return true;}
+
 		}
 		return false;
 	}
@@ -347,9 +384,10 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC13() {
+	public boolean LIC13(double[] X, double[] Y, int numpoints, double radius1, double radius2, int a_pts, int b_pts) {
 		// There exists a set of three points seperated by A_PTS and B_PTS that can not be contained in a circle of radius1
 		// AND one set of three points (may be a different set) such that the can be contained in or on the radius of a circle of radius2
+		
 		return false;
 	}
 
