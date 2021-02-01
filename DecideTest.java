@@ -49,7 +49,13 @@ class DecideTest {
 		double[] LIC2_Y3 = {0, 0, 2, 2};
 		assert false == decide.LIC2(LIC2_X3, LIC2_Y3, 4, pi, epsilon) : "LIC2 (false) Failed";
 		
-		//LIC3 implemented not tested
+		//LIC3
+		double[] LIC3_X1 = {0, 0, 0, 0 ,3, 0};
+		double[] LIC3_Y1 = {0, 0, 0, 1, 0, 6};
+		assert true == decide.LIC3(LIC3_X1, LIC3_Y1, 3) : "LIC3 (true) Failed";
+		double[] LIC3_X2 = {0, -1, 0, 0 ,1, 1};
+		double[] LIC3_Y2 = {0, 0, -1, 1, 0,-1};
+		assert false == decide.LIC3(LIC3_X2, LIC3_Y2, 3) : "LIC3 (false) Failed";
 		
 		//LIC4
 		double[] LIC4_X1 = {0, -1, 0, 0 ,1, 1};
