@@ -126,22 +126,26 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC3() {
-		//There exists at least one set of three consecutive data points that are the vertices of a triangle
-		//with area greater than AREA1
+	//There exists at least one set of three consecutive data points that are the vertices of a triangle with area greater than AREA1
+	public boolean LIC3(double[] X, double[] Y, double area1) {
+		
 		double x1, y1, x2, y2, x3, y3, area;
-		for(int i = 2; i < NUMPOINTS; i++){
+		
+		//System.out.println(Arrays.toString(X));
+		//System.out.println(Arrays.toString(Y));
+		
+		for(int i = 2; i < X.length; i++){
 			x1 = X[i-2];
 			y1 = Y[i-2];
 			x2 = X[i-1];
 			y2 = Y[i-1];
 			x3 = X[i];
 			y3 = Y[i];
-			area = (x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0;
+			area = Math.abs((x1 * (y2 - y3) + x2 * (y3 - y1) + x3 * (y1 - y2)) / 2.0);
 			
 			//System.out.println(area);
 			
-			if(area > AREA1){
+			if(area > area1){
 				return true;
 			}
 		}
