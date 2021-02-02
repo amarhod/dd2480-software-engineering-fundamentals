@@ -34,20 +34,18 @@ class DecideTest {
 		assert false == decide.LIC1(LIC1_X2, LIC1_Y2, 3, 1.0) : "LIC1 (false) Failed";	
 		
 		//LIC2
-		double pi = 180;
-		double epsilon = 90;
 		//angle less than pi - epsilon = 90 degrees
 		double[] LIC2_X1 = {0, 1, 0.5};
 		double[] LIC2_Y1 = {0, 0, 1};
-		assert true == decide.LIC2(LIC2_X1, LIC2_Y1, 3, pi, epsilon) : "LIC2 (true, angle < 90) Failed";
+		assert true == decide.LIC2(LIC2_X1, LIC2_Y1, 3, Math.PI/2) : "LIC2 (true, angle < 90) Failed";
 		//angle more than pi + epsilon = 270 degrees
 		double[] LIC2_X2 = {0, 1, 0.5};
 		double[] LIC2_Y2 = {0, 0, -1};
-		assert true == decide.LIC2(LIC2_X2, LIC2_Y2, 3, pi, epsilon) : "LIC2 (true, angle > 270) Failed";
+		assert true == decide.LIC2(LIC2_X2, LIC2_Y2, 3, Math.PI/2) : "LIC2 (true, angle > 270) Failed";
 		//angles between 90 and 270
 		double[] LIC2_X3 = {0, 1, 2, 3};
 		double[] LIC2_Y3 = {0, 0, 2, 2};
-		assert false == decide.LIC2(LIC2_X3, LIC2_Y3, 4, pi, epsilon) : "LIC2 (false) Failed";
+		assert false == decide.LIC2(LIC2_X3, LIC2_Y3, 4, Math.PI/2) : "LIC2 (false) Failed";
 		
 		//LIC3
 		double[] LIC3_X1 = {0, 0, 0, 0 ,3, 0};
