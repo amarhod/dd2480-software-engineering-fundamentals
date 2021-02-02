@@ -152,6 +152,36 @@ class DecideTest {
 		double[] LIC14_X2 = {0, 0, 4, 0, 0};
 		double[] LIC14_Y2 = {0, 0, 0, 0, 500}; //area 4*500/2 = 1000
 		assert false == decide.LIC14(LIC14_X2, LIC14_Y2, 5, 5, 100, 1, 1) : "LIC14 (false) Failed";
+
+
+		//CMV
+		boolean[] answer = {true, true, true, true, true, true, false, true, true, false, true, true, true, true, true};
+		double[] CMV_X1 = {0, 1, 1, -1, 3};
+		double[] CMV_Y1 = {0, 0, -1, -1, -1};
+		int numpoints = 5;
+		double length1 = 2.9;
+		double length2 = 3.5;
+		double area1 = 0.95;
+		double area2 = 1.05;
+		double radius1 = Math.sqrt(10)/2.1;
+		double radius2 = Math.sqrt(10)/1.9;
+		double epsilon = Math.PI/2.1;
+		double dist = 1.95;
+		int a_pts, b_pts, c_pts, d_pts, e_pts, f_pts, g_pts, k_pts, n_pts, q_pts, quads;
+		a_pts = b_pts = c_pts = d_pts = e_pts = f_pts = 1;
+		g_pts = 2;
+		k_pts = 3;
+		q_pts = 5;
+		n_pts = 3;
+		quads = 2;
+
+		boolean[] vector = decide.CMV(CMV_X1, CMV_Y1, numpoints, length1, length2, area1, area2,
+		radius1, radius2, epsilon, dist, a_pts, b_pts, c_pts, 
+		d_pts, e_pts, f_pts, g_pts, k_pts, n_pts, q_pts, quads);
+		for(int i = 0; i < 15; i++){
+			assert vector[i] == answer[i] : String.format("CMV test: LIC %d outputed: %s, which is wrong", i, Boolean.toString(vector[i]));
+		}
+
 		
 	}
 }
