@@ -461,14 +461,30 @@ class Decide {
 		return false;
 	}
 	
-	
     //conditions met vector
-    public int[] CMV() {
-		//computes the conditions met vector from the LIC's
-		int[] vector = {0};
+    public boolean[] CMV(double[] X, double[] Y, int numpoints, double length1, double length2, double area1, double area2,
+                            double radius1, double radius2, double epsilon, double dist, int a_pts, int b_pts, int c_pts, 
+                            int d_pts, int e_pts, int f_pts, int g_pts, int k_pts, int n_pts, int q_pts, int quads) {
+        //computes the conditions met vector from the LIC's
+        boolean[] vector = new boolean[15];
+        vector[0] = LIC0(X, Y, numpoints, length1);
+        vector[1] = LIC1(X, Y, numpoints, radius1);
+        vector[2] = LIC2(X, Y, numpoints, epsilon);
+        vector[3] = LIC3(X, Y, numpoints, area1);
+        vector[4] = LIC4(X, Y, numpoints, q_pts, quads);
+        vector[5] = LIC5(X, Y, numpoints);
+        vector[6] = LIC6(X, Y, numpoints, n_pts, dist);
+        vector[7] = LIC7(X, Y, numpoints, length1, k_pts);
+        vector[8] = LIC8(X, Y, numpoints, radius1, a_pts, b_pts);
+        vector[9] = LIC9(X, Y, numpoints, epsilon, c_pts, d_pts);
+        vector[10] = LIC10(X, Y, numpoints, area1, e_pts, f_pts);
+        vector[11] = LIC11(X, Y, numpoints, g_pts);
+        vector[12] = LIC12(X, Y, numpoints, length1, length2, k_pts);
+        vector[13] = LIC13(X, Y, numpoints, radius1, radius2, a_pts, b_pts);
+        vector[14] = LIC14(X, Y, numpoints, area1, area2, e_pts, f_pts);
         return vector;
     }
-    
+
     //Preliminary unlock matrix
     public int[][] PMV() {
 		//computes the PUM matrix from the CMV and the LCM
