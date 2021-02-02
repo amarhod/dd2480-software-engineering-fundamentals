@@ -85,7 +85,7 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC2(double[] X, double[] Y, int numpoints, double pi, double epsilon) {
+	public boolean LIC2(double[] X, double[] Y, int numpoints, double epsilon) {
 		// pi - epsilon < Angle between any three points < pi + epsilon
 		double x1, y1, x2, y2, x3, y3, angle;
 		for(int i = 2; i < numpoints; i++){
@@ -96,20 +96,11 @@ class Decide {
 			x3 = X[i];
 			y3 = Y[i];
 			
-			angle = Math.toDegrees((Math.atan2(y1-y2, x1-x2) - Math.atan2(y3-y2, x3-x2)));
-			
-			if (angle < 0) {
-				angle += 360;
-			}
-			if (angle > 180) {
-				angle = 360-angle;
-			}
-			
-			//System.out.println(angle);
+			angle = (Math.toDegrees(Math.atan2(y1-y2, x1-x2) - Math.atan2(y3-y2, x3-x2)) + 360) % 360;	
 			
 			//If P1 or P3 is equal to P2 there is no angle
 			if (!((x1 == x2 && y1 == y2) || (x3 == x2 && y3 == y2))) {
-				if(angle < (pi-epsilon) || angle > pi+epsilon ){
+				if(angle < Math.toDegrees(Math.PI - epsilon) || angle > Math.toDegrees(Math.PI + epsilon)){
 					return true;
 				}
 			}
