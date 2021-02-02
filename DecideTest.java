@@ -206,11 +206,46 @@ class DecideTest {
 			};
 		
 		boolean[][] pum_mock = decide.PUM(cmv_mock, lcm_mock);
-
+		
+		//testing a handfull of values, using the three different operators and true and false cases
 		assert pum_mock[0][0] == true : " PUM[0][0] (true) failed";
+		assert pum_mock[5][5] == true : " PUM[5][5] (true) failed";
 		assert pum_mock[0][1] == true : " PUM[0][1] (true) failed";
 		assert pum_mock[1][2] == false : " PUM[1][2] (false) failed";
-
+		assert pum_mock[2][1] == false : " PUM[2][1] (false) failed";
+		
+		//FUV
+		
+		boolean[][] pum_mock2 = { //if i + j is even or i or j is 0 we have true, else false
+			{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
+			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
+			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
+			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true}
+			};
+			
+		boolean[] puv_mock = {true, false, true, true, true, true, true, true, true, true, true, true, true, true, false};
+		
+		boolean[] fuv_mock = decide.FUV(pum_mock2, puv_mock);
+		
+		boolean[] expected_fuv = {true, true, false, false, false, false, false, false, false, false, false, false, false, false, true };
+		
+		for(int i = 0; i < 15; i++){
+			assert fuv_mock[i] == expected_fuv[i] : " FUV test failed";
+		}
+		
+		
+		
 		
 	}
 }

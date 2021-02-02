@@ -515,9 +515,30 @@ class Decide {
 	}
 	
 	//Final unlock vector
-	public int[] FUV() {
-		//computes the FUV vector from the PMV and the PUV
-		int[] vector = {0};
+	public boolean[] FUV(boolean[][] pum, boolean[] puv) {
+		//computes the FUV vector from the PUM and the PUV
+		
+		boolean vector[] = new boolean[15];
+		boolean allTrueFlag = true; //set to false if any element in row i of the PUM is false
+		
+		for (int i=0; i < 15; i++){
+			allTrueFlag = true;
+			if (puv[i] == false) {
+				vector[i] = true;
+			} else {
+				for (int j=0; j < 15; j++){
+					if (pum[i][j] == false){
+						allTrueFlag = false; //all elements in row are not true
+					}
+				}
+				if (allTrueFlag) {
+					vector[i] = true;
+				} else {
+					vector[i] = false;
+				}
+			}
+		}
+		
         return vector;
 	}
 	
