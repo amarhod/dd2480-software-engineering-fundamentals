@@ -177,12 +177,11 @@ class Decide {
 	public boolean LIC5(double[] X, double[] Y, int numpoints) {
 		//There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such that X[j] - X[i] < 0. (where i = j-1)
 		double x1, x2, diff;
-		for (int i = 0; i < numpoints; i++) {
+		for (int i = 0; i < numpoints-1; i++) {
 			x1 = X[i];
 			x2 = X[i+1];
-		        diff = x2 - x1;
-
-		        if(diff < 0){
+			diff = x2 - x1;
+			if(diff < 0){
 				return true;
 			}
 		}
