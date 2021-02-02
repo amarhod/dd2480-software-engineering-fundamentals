@@ -50,26 +50,26 @@ class DecideTest {
 		//LIC3
 		double[] LIC3_X1 = {0, 0, 0, 0 ,3, 0};
 		double[] LIC3_Y1 = {0, 0, 0, 1, 0, 6};
-		assert true == decide.LIC3(LIC3_X1, LIC3_Y1, 3) : "LIC3 (true) Failed";
+		assert true == decide.LIC3(LIC3_X1, LIC3_Y1, 6, 3) : "LIC3 (true) Failed";
 		double[] LIC3_X2 = {0, -1, 0, 0 ,1, 1};
 		double[] LIC3_Y2 = {0, 0, -1, 1, 0,-1};
-		assert false == decide.LIC3(LIC3_X2, LIC3_Y2, 3) : "LIC3 (false) Failed";
+		assert false == decide.LIC3(LIC3_X2, LIC3_Y2, 6, 3) : "LIC3 (false) Failed";
 		
 		//LIC4
 		double[] LIC4_X1 = {0, -1, 0, 0 ,1, 1};
 		double[] LIC4_Y1 = {0, 0, -1, 1, 0,-1};
-		assert true == decide.LIC4(LIC4_X1, LIC4_Y1, 5, 3) : "LIC4 (true) Failed";
+		assert true == decide.LIC4(LIC4_X1, LIC4_Y1, 6, 5, 3) : "LIC4 (true) Failed";
 		double[] LIC4_X2 = {0, 1, 0, 2 ,1, 1};
 		double[] LIC4_Y2 = {0, 0, -1, 2, 0,-1};
-		assert false == decide.LIC4(LIC4_X2, LIC4_Y2, 5, 3) : "LIC4 (false) Failed";
+		assert false == decide.LIC4(LIC4_X2, LIC4_Y2, 6, 5, 3) : "LIC4 (false) Failed";
 		
 		//LIC6
 		double[] LIC6_X1 = {0, -1, 0, 0 ,1, 0};
 		double[] LIC6_Y1 = {0, 0, -1, 0, 0,-1};
-		assert true == decide.LIC6(LIC6_X1, LIC6_Y1, 4, 1.25) : "LIC6 (true) Failed";
+		assert true == decide.LIC6(LIC6_X1, LIC6_Y1, 6, 4, 1.25) : "LIC6 (true) Failed";
 		double[] LIC6_X2 = {0, 0, 0, 0 ,1, 5};
 		double[] LIC6_Y2 = {0, 0, -2, 0, 0, 5};
-		assert false == decide.LIC6(LIC6_X2, LIC6_Y2, 4, 2) : "LIC6 (false) Failed";
+		assert false == decide.LIC6(LIC6_X2, LIC6_Y2, 6, 4, 2) : "LIC6 (false) Failed";
 		
 		//LIC7
 		//k_pts = 1, length1 = 10
@@ -108,10 +108,10 @@ class DecideTest {
 		//LIC11
 		double[] LIC11_X1 = {0, 1, 2, 3 ,-1, 0};
 		double[] LIC11_Y1 = {0, 0, -1, 0, 0,-1};
-		assert true == decide.LIC11(LIC11_X1, LIC11_Y1, 3) : "LIC11 (true) Failed";
+		assert true == decide.LIC11(LIC11_X1, LIC11_Y1, 6, 3) : "LIC11 (true) Failed";
 		double[] LIC11_X2 = {0, 1, 2, 3 ,4, 5};
 		double[] LIC11_Y2 = {0, 0, -2, 0, 0, 5};
-		assert false == decide.LIC11(LIC11_X2, LIC11_Y2, 1) : "LIC11 (false) Failed";		
+		assert false == decide.LIC11(LIC11_X2, LIC11_Y2, 6, 1) : "LIC11 (false) Failed";		
 
 		//LIC12
 		//k_pts = 2, length1 = 5, length2 = 100
