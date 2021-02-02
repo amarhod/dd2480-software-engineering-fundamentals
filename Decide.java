@@ -486,9 +486,31 @@ class Decide {
     }
 
     //Preliminary unlock matrix
-    public int[][] PMV() {
+    public boolean[][] PUM(boolean[] cmv, String[][] lcm) {
 		//computes the PUM matrix from the CMV and the LCM
-		int[][] matrix = { {0} };
+		
+		boolean matrix[][] = new boolean[15][15];
+		
+		for (int i=0; i < 15; i++){
+			for (int j=0; j < 15; j++){
+				if (lcm[i][j] == "ANDD") {
+					if (cmv[i] && cmv[j]){
+						matrix[i][j] = true;
+					} else {
+						matrix[i][j] = false;
+					}
+				} else if (lcm[i][j] == "ORR") {
+					if (cmv[i] || cmv[j]){
+						matrix[i][j] = true;
+					} else {
+						matrix[i][j] = false;
+					}
+				} else if (lcm[i][j] == "NOTUSED") {
+					matrix[i][j] = true;
+				}
+			}
+		}
+		
         return matrix;
 	}
 	
