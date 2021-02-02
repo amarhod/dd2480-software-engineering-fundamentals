@@ -109,14 +109,9 @@ class Decide {
 	}
 
 	//There exists at least one set of three consecutive data points that are the vertices of a triangle with area greater than AREA1
-	public boolean LIC3(double[] X, double[] Y, double area1) {
-		
+	public boolean LIC3(double[] X, double[] Y, int numpoints, double area1) {
 		double x1, y1, x2, y2, x3, y3, area;
-		
-		//System.out.println(Arrays.toString(X));
-		//System.out.println(Arrays.toString(Y));
-		
-		for(int i = 2; i < X.length; i++){
+		for(int i = 2; i < numpoints; i++){
 			x1 = X[i-2];
 			y1 = Y[i-2];
 			x2 = X[i-1];
@@ -134,11 +129,10 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC4(double[] X, double[] Y, int q_pts, int quads) {
+	public boolean LIC4(double[] X, double[] Y, int numpoints, int q_pts, int quads) {
 		//There exists at least one set of Q PTS consecutive data points that lie in more than QUADS
 		Queue<Integer> queue = new LinkedList<Integer>();
-		
-		for(int i = 0; i<X.length; i++) {
+		for(int i = 0; i<numpoints; i++) {
 			double x1 = X[i];
 			double y1 = Y[i];
 			
@@ -196,13 +190,13 @@ class Decide {
 	}
 	
 	//one point is further away than the distance between the first and the last point in any sequence of points.
-	public boolean LIC6(double[] X, double[] Y, int n_pts, double dist) {
+	public boolean LIC6(double[] X, double[] Y, int numpoints, int n_pts, double dist) {
 		Queue Xqueue = new LinkedList();
 		Queue Yqueue = new LinkedList();
 		double[] Xarray = new double[n_pts];
 		double[] Yarray = new double[n_pts];
 		
-		for(int i = 0; i<X.length; i++) {
+		for(int i = 0; i<numpoints; i++) {
 			Xqueue.add(X[i]);
 			Yqueue.add(Y[i]);
 			
@@ -349,17 +343,17 @@ class Decide {
 	}
 	
 	// There exists a set of two points seperated by G_PTS x[i + G_PTS] - x[i] < 0
-	public boolean LIC11(double[] X, double[] Y, int g_pts) {
+	public boolean LIC11(double[] X, double[] Y, int numpoints, int g_pts) {
 		double x1, x2;
 		
 		//If NUMPOINTS < 3 the condition is false
-		if (X.length < 3) {
+		if (numpoints < 3) {
 			return false;
 		}
 		
 		//System.out.println(Arrays.toString(X));
 		
-		for (int i = 0; i < X.length - g_pts - 1; i++) {
+		for (int i = 0; i < numpoints - g_pts - 1; i++) {
 			x1 = X[i];
 			x2 = X[i + g_pts + 1];
 			
