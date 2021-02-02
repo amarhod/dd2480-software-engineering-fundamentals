@@ -5,16 +5,7 @@ import java.util.*;
 class Decide {
     //Program for deciding hypothetical anti-ballistic missile system
     //Call method decide with appropriate input to decide to send an interceptor or not.
-	
-	
-	//Global variables
-	int NUMPOINTS = 3;
-	double[] X = {0.23, 6.51, 0.15};
-	double[] Y = {1.31, 2.20, 1.3};
-	double LENGTH1 = 2.0;
-	double AREA1 = 6.6;
-	int PI = 180;
-	int EPSILON = 90;
+
 	
 	public double smallestRadius(double x1, double y1, double x2, double y2, double x3, double y3) {
 		//helper function that returns the smallest possible circle that contains three points in euclidean space
@@ -198,10 +189,10 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC5(double[] X, double[] Y) {
+	public boolean LIC5(double[] X, double[] Y, int numpoints) {
 		//There exists at least one set of two consecutive data points, (X[i],Y[i]) and (X[j],Y[j]), such that X[j] - X[i] < 0. (where i = j-1)
 		double x1, x2, diff;
-		for (int i = 0; i < NUMPOINTS; i++) {
+		for (int i = 0; i < numpoints; i++) {
 			x1 = X[i];
 			x2 = X[i+1];
 		        diff = x2 - x1;
