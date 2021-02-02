@@ -308,7 +308,7 @@ class Decide {
 		return false;
 	}
 
-	public boolean LIC9(double[] X, double[] Y, int numpoints, double epilson, int c_pts, int d_pts) {
+	public boolean LIC9(double[] X, double[] Y, int numpoints, double epsilon, int c_pts, int d_pts) {
 		// There exists three points seperated by C_PTS and D_PTS apart which have pi - epsilon < angle < pi + epsilon
 		if(numpoints < 5){return false;}
 		double x1, y1, x2, y2, x3, y3, angle;
@@ -320,7 +320,7 @@ class Decide {
 			x3 = X[i+c_pts+d_pts+2];
 			y3 = Y[i+c_pts+d_pts+2];
 			angle = (Math.toDegrees((Math.atan2(y1-y2, x1-x2) - Math.atan2(y3-y2, x3-x2))) + 360) % 360;
-			if((angle < Math.toDegrees(Math.PI - epilson)) || (angle > Math.toDegrees(Math.PI + epilson))){return true;}
+			if((angle < Math.toDegrees(Math.PI - epsilon)) || (angle > Math.toDegrees(Math.PI + epsilon))){return true;}
 		}
 		return false;
 	}
