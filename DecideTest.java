@@ -62,6 +62,13 @@ class DecideTest {
 		double[] LIC4_X2 = {0, 1, 0, 2 ,1, 1};
 		double[] LIC4_Y2 = {0, 0, -1, 2, 0,-1};
 		assert false == decide.LIC4(LIC4_X2, LIC4_Y2, 6, 5, 3) : "LIC4 (false) Failed";
+	    
+	        //LIC5
+		double[] X = {0, -1, 0};
+		assert true == decide.LIC5(X, Y, 3) : "LIC5 (true) Failed";
+		double[] X = {0, 1, 2};
+		assert false == decide.LIC5(X, Y, 3) : "LIC5 (false) Failed";	
+		
 		
 		//LIC6
 		double[] LIC6_X1 = {0, -1, 0, 0 ,1, 0};
