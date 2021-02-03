@@ -19,6 +19,6 @@ Amar -
 
 Gustav - Code skeleton for Decide.java and DecideTest.java, smallest radius of three points method, LIC12, LIC13, LIC14, LIC7, refactoring LIC2, PUM method, FUV method
 
-Petter -
+Petter - Wrote and tested the functions for LIC2, LIC3, LIC4, LIC6 and LIC11, as well writing formal tests for LIC3, LIC4, LIC6 and LIC11. 
 
 Sida -
