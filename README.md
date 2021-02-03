@@ -21,4 +21,4 @@ Gustav - Code skeleton for Decide.java and DecideTest.java, smallest radius of t
 
 Petter - Wrote and tested the functions LIC2, LIC3, LIC4, LIC6, LIC11, and wrote formal tests for LIC3, LIC4, LIC6 and LIC11. 
 
-Sida -
+Sida - Wrote and tested the functions LIC5.
