@@ -16,6 +16,9 @@ java -ea DecideTest
 ### Contributions
 
 Amar -
-Gustav -
+
+Gustav - Code skeleton for Decide.java and DecideTest.java, smallest radius of three points method, LIC12, LIC13, LIC14, LIC7, refactoring LIC2, PUM method, FUV method
+
 Petter -
+
 Sida -
