@@ -15,7 +15,7 @@ java -ea DecideTest
 
 ### Contributions
 
-Amar -
+Amar - Wrote and tested the functions for LIC0, LIC1, LIC8, LIC9, LIC10, CMV and FUV. Also wrote the first README draft and made various refactoring of the code base.
 
 Gustav - Code skeleton for Decide.java and DecideTest.java, smallest radius of three points method, LIC12, LIC13, LIC14, LIC7, refactoring LIC2, PUM method, FUV method
 
