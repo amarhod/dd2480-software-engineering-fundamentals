@@ -12,6 +12,11 @@ plugins {
     id 'application'
 }
 apply plugin:'application'
+apply plugin:'java'
+compileJava {
+    options.compilerArgs << '-Xlint:unchecked'
+}
+
 repositories {
     // Use JCenter for resolving dependencies.
     jcenter()
@@ -35,4 +40,6 @@ task customTest(type: JavaExec) {
     description = 'Runs the main in DecideTest and unit tests all functions'
     classpath sourceSets.test.runtimeClasspath
     main = 'Decide.DecideTest'
+    enableAssertions = true
 }
+
