@@ -29,3 +29,10 @@ application {
     // Define the main class for the application.
     mainClass = 'Decide.Decide'
 }
+
+task customTest(type: JavaExec) {
+    group = 'Custom tasks'
+    description = 'Runs the main in DecideTest and unit tests all functions'
+    classpath sourceSets.test.runtimeClasspath
+    main = 'Decide.DecideTest'
+}
