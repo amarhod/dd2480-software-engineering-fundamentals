@@ -1,6 +1,17 @@
 class DecideTest {
 	// File containing test cases for Decide.java
 	
+	public static void smallestRadius_test() {
+		LIC lic = new LIC();
+		//smallestRadius test
+		//obtuse case
+		double smallest = lic.smallestRadius(0,0,50,10,100,0);
+		assert ( smallest <= 50.1 && smallest >= 49.9) : "smallest radius not within expected range for obtuse case";
+		//acute case
+		smallest = lic.smallestRadius(0,0,1,2,2,0);
+		assert ( smallest <= 1.26 && smallest >= 1.24) : "smallest radius not within expected range for acute case";
+	}
+	
 	public static void LIC0_test() {
 	    LIC lic = new LIC();
 		double[] X1 = {0.23, 6.51};
@@ -181,39 +192,7 @@ class DecideTest {
 	
 	}
 	
-    public static void main(String[] args) {
-		//To run test cases, need to add "-ea" option:
-		//"java -ea DecideTest"
-
-		Decide decide = new Decide();
-		LIC lic = new LIC();
-		//smallestRadius test
-		//obtuse case
-		double smallest = lic.smallestRadius(0,0,50,10,100,0);
-		assert ( smallest <= 50.1 && smallest >= 49.9) : "smallest radius not within expected range for obtuse case";
-		//acute case
-		smallest = lic.smallestRadius(0,0,1,2,2,0);
-		assert ( smallest <= 1.26 && smallest >= 1.24) : "smallest radius not within expected range for acute case";
-		
-		LIC0_test();
-		LIC1_test();
-		LIC2_test();
-		LIC3_test();
-		LIC4_test();
-		LIC5_test();
-		LIC6_test();
-		LIC7_test();
-		LIC8_test();
-		LIC9_test();
-		LIC10_test();
-		LIC11_test();
-		LIC12_test();
-		LIC13_test();
-		LIC14_test();
-		
-		//Test of MatrixCalc methods
-
-		//CMV
+	public static void CMV_test() {
 		MatrixCalc matrixcalc = new MatrixCalc();
 		
 		boolean[] answer = {true, true, true, true, true, true, false, true, true, false, true, true, true, true, true};
@@ -242,9 +221,11 @@ class DecideTest {
 		for(int i = 0; i < 15; i++){
 			assert vector[i] == answer[i] : String.format("CMV test: LIC %d outputed: %s, which is wrong", i, Boolean.toString(vector[i]));
 		}
+	}
+	
+	public static void PUM_test() {
+		MatrixCalc matrixcalc = new MatrixCalc();
 		
-
-		//PUM
 		boolean[] cmv_mock = {true, false, true, false, true, false, true, false, true, false, true, false, true, false, true}; //even indexes are true, odd indexes false
 		String[][] lcm_mock = { //symmetrical LCM matrix, most are "NOTUSED"
 			{"ANDD", "ORR", "ORR", "NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED"},
@@ -274,9 +255,11 @@ class DecideTest {
 		assert pum_mock[0][1] == true : " PUM[0][1] (true) failed";
 		assert pum_mock[1][2] == false : " PUM[1][2] (false) failed";
 		assert pum_mock[2][1] == false : " PUM[2][1] (false) failed";
+	}
+	
+	public static void FUV_test() {
+		MatrixCalc matrixcalc = new MatrixCalc();
 		
-
-		//FUV
 		boolean[][] pum_mock2 = { //if i + j is even or i or j is 0 we have true, else false
 			{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
 			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
@@ -300,8 +283,32 @@ class DecideTest {
 		for(int i = 0; i < 15; i++){
 			assert fuv_mock[i] == expected_fuv[i] : " FUV test failed";
 		}
+	}
+	
+	public static void decide_test() {
+		Decide decide = new Decide();
 		
-		//Decide
+		
+		boolean[] answer = {true, true, true, true, true, true, false, true, true, false, true, true, true, true, true};
+		double[] CMV_X1 = {0, 1, 1, -1, 3};
+		double[] CMV_Y1 = {0, 0, -1, -1, -1};
+		int numpoints = 5;
+		double length1 = 2.9;
+		double length2 = 3.5;
+		double area1 = 0.95;
+		double area2 = 1.05;
+		double radius1 = Math.sqrt(10)/2.1;
+		double radius2 = Math.sqrt(10)/1.9;
+		double epsilon = Math.PI/2.1;
+		double dist = 1.95;
+		int a_pts, b_pts, c_pts, d_pts, e_pts, f_pts, g_pts, k_pts, n_pts, q_pts, quads;
+		a_pts = b_pts = c_pts = d_pts = e_pts = f_pts = 1;
+		g_pts = 2;
+		k_pts = 3;
+		q_pts = 5;
+		n_pts = 3;
+		quads = 2;
+		
 		String[][] lcm_mock2 = { //symmetrical LCM matrix, most are "NOTUSED"
 			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
 			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
@@ -325,7 +332,43 @@ class DecideTest {
 							radius1, radius2, epsilon, dist, a_pts, b_pts, c_pts, d_pts,
 							e_pts, f_pts, g_pts, k_pts, n_pts, q_pts, quads, lcm_mock2, 
 							puv_mock2) == true : "Decide test (true) failed";
+	}
+	
+	
+	
+    public static void main(String[] args) {
+		//To run test cases, need to add "-ea" option:
+		//"java -ea DecideTest"
+
+		//Test of LIC functionality
 		
+		smallestRadius_test();
 		
+		LIC0_test();
+		LIC1_test();
+		LIC2_test();
+		LIC3_test();
+		LIC4_test();
+		LIC5_test();
+		LIC6_test();
+		LIC7_test();
+		LIC8_test();
+		LIC9_test();
+		LIC10_test();
+		LIC11_test();
+		LIC12_test();
+		LIC13_test();
+		LIC14_test();
+		
+		//Test of MatrixCalc methods
+
+		CMV_test();
+		PUM_test();
+		FUV_test();
+		
+		//Test of Decide method
+		
+		decide_test();
+
 	}
 }
