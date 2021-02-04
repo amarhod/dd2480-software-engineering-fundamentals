@@ -1,6 +1,6 @@
+package Decide;
 
-
-class Decide {
+public class Decide {
     //Program for deciding hypothetical anti-ballistic missile system
     //Call method decide with appropriate input to decide to send an interceptor or not.
     
@@ -27,5 +27,8 @@ class Decide {
 			System.out.println("NO");
 			return launch;
 		}
+	}
+	public static void main(String[] args) {
+		System.out.println("Testing Decide class");
 	}
 }

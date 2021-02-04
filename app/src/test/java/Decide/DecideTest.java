@@ -1,4 +1,6 @@
-class DecideTest {
+package Decide;
+
+public class DecideTest {
 	// File containing test cases for Decide.java
 	
 	public static void smallestRadius_test() {
@@ -370,5 +372,6 @@ class DecideTest {
 		
 		decide_test();
 
+		System.out.println("DecideTest run successfully");
 	}
 }
