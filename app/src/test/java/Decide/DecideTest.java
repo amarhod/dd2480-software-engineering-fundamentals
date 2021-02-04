@@ -1,3 +1,5 @@
+package Decide;
+
 class DecideTest {
 	// File containing test cases for Decide.java
 	
