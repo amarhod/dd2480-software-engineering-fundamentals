@@ -20,7 +20,7 @@ The file DecideTest contains all the unit tests for each function. To run it, th
 
 ### Contributions
 
-Amar - Wrote and tested the functions for LIC0, LIC1, LIC8, LIC9, LIC10, CMV and Decide. Also wrote the first README draft and made various refactoring of the code base.
+Amar - Wrote and tested the functions for LIC0, LIC1, LIC8, LIC9, LIC10, CMV and Decide. Integrated Gradle as our build tool, wrote the first README draft and made various refactoring of the code base.
 
 Gustav - Code skeleton for Decide.java and DecideTest.java, smallest radius of three points method, LIC12, LIC13, LIC14, LIC7, refactoring LIC2, PUM method, FUV method
 
