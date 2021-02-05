@@ -236,7 +236,14 @@ public class DecideTest {
 	public static void CMV_test() {
 		MatrixCalc matrixcalc = new MatrixCalc();
 		
-		boolean[] answer = {true, true, true, true, true, true, false, true, true, false, true, true, true, true, true};
+		
+		boolean[] answer = new boolean[15];
+		for (int i = 0; i < 15; i++){
+			answer[i] = true;
+		}
+		answer[6] = false;
+		answer[9] = false;
+		
 		double[] CMV_X1 = {0, 1, 1, -1, 3};
 		double[] CMV_Y1 = {0, 0, -1, -1, -1};
 		int numpoints = 5;
@@ -268,26 +275,29 @@ public class DecideTest {
 	public static void PUM_test() {
 		MatrixCalc matrixcalc = new MatrixCalc();
 		
-		boolean[] cmv_mock = {true, false, true, false, true, false, true, false, true, false, true, false, true, false, true}; //even indexes are true, odd indexes false
-		String[][] lcm_mock = { //symmetrical LCM matrix, most are "NOTUSED"
-			{"ANDD", "ORR", "ORR", "NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED"},
-			{"ORR", "NOTUSED", "ANDD","NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED"},
-			{"ORR", "ANDD", "NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"}
-			};
+		boolean[] cmv_mock = new boolean[15];
+		for (int i = 0; i < 15; i++){ //even indexes are true, odd indexes false
+			if (i % 2 == 0) {
+				cmv_mock[i] = true;
+			} else {
+				cmv_mock[i] = false;
+			}
+		}
+		
+		String[][] lcm_mock = new String[15][15];
+		
+		for (int i = 0; i < 15; i++){ //symmetrical LCM matrix, most elements are "NOTUSED"
+			for (int j = 0; j < 15; j++){
+				lcm_mock[i][j] = "NOTUSED";
+			}
+		}
+		lcm_mock[0][0] = "ANDD";
+		lcm_mock[1][0] = "ORR";
+		lcm_mock[0][1] = "ORR";
+		lcm_mock[2][0] = "ORR";
+		lcm_mock[0][2] = "ORR";
+		lcm_mock[1][2] = "ANDD";
+		lcm_mock[2][1] = "ANDD";
 		
 		boolean[][] pum_mock = matrixcalc.PUM(cmv_mock, lcm_mock);
 		
@@ -302,24 +312,20 @@ public class DecideTest {
 	public static void FUV_test() {
 		MatrixCalc matrixcalc = new MatrixCalc();
 		
-		boolean[][] pum_mock2 = { //if i + j is even or i or j is 0 we have true, else false
-			{true, true, true, true, true, true, true, true, true, true, true, true, true, true, true},
-			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
-			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
-			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
-			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
-			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
-			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
-			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
-			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
-			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
-			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
-			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
-			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true},
-			{true, true, false, true, false, true, false, true, false, true, false, true, false, true, false},
-			{true, false, true, false, true, false, true, false, true, false, true, false, true, false, true}
-			};	
+		boolean[][] pum_mock2 = new boolean[15][15]; 
+			
+		for (int i = 0; i < 15; i++){ //if i + j is even or i or j is 0 we have true, else false
+			for (int j = 0; j < 15; j++){
+				if ((i + j) % 2 == 0 || i == 0 || j == 0) {
+					pum_mock2[i][j] = true;
+				} else {
+					pum_mock2[i][j] = false;
+				}
+			}
+		}
+			
 		boolean[] puv_mock = {true, false, true, true, true, true, true, true, true, true, true, true, true, true, false};
+		
 		boolean[] fuv_mock = matrixcalc.FUV(pum_mock2, puv_mock);
 		boolean[] expected_fuv = {true, true, false, false, false, false, false, false, false, false, false, false, false, false, true };
 		for(int i = 0; i < 15; i++){
@@ -329,7 +335,6 @@ public class DecideTest {
 	
 	public static void decide_test() {
 		Decide decide = new Decide();
-		
 		
 		boolean[] answer = {true, true, true, true, true, true, false, true, true, false, true, true, true, true, true};
 		double[] CMV_X1 = {0, 1, 1, -1, 3};
@@ -351,23 +356,20 @@ public class DecideTest {
 		n_pts = 3;
 		quads = 2;
 		
-		String[][] lcm_mock2 = { //symmetrical LCM matrix, most are "NOTUSED"
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ORR", "ORR", "ORR", "ORR", "ORR","ORR","NOTUSED","ORR","ORR","NOTUSED","ORR","NOTUSED","NOTUSED","NOTUSED","NOTUSED"},
-			{"NOTUSED", "NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","NOTUSED","ANDD","NOTUSED","NOTUSED","NOTUSED","NOTUSED", "NOTUSED", "NOTUSED", "NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ORR", "ORR", "ORR", "ORR", "ORR","ORR","NOTUSED","ORR","ORR","NOTUSED","ORR","NOTUSED","NOTUSED","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"},
-			{"ANDD", "ANDD", "ANDD", "ANDD", "ANDD","ANDD","ORR","ANDD","ANDD","ORR","ANDD","ORR","ORR","NOTUSED","NOTUSED"}
-			};
+		String[][] lcm_mock2 = new String[15][15];
+		for (int i = 0; i < 15; i++){ //symmetrical LCM matrix, most elements are "NOTUSED"
+			for (int j = 0; j < 15; j++){
+				lcm_mock2[i][j] = "NOTUSED";
+			}
+		}
+		lcm_mock2[0][0] = "ANDD";
+		lcm_mock2[1][0] = "ORR";
+		lcm_mock2[0][1] = "ORR";
+		lcm_mock2[2][0] = "ORR";
+		lcm_mock2[0][2] = "ORR";
+		lcm_mock2[1][2] = "ANDD";
+		lcm_mock2[2][1] = "ANDD";
+		
 		boolean[] puv_mock2 = {true, true, true, true, true, true, true, true, true, true, true, true, true, true, true};
 		//Tests the complete system with all the above inputs (read the specific information for each LIC in their test function).
 		assert decide.decide(CMV_X1, CMV_Y1, numpoints, length1, length2, area1, area2,
