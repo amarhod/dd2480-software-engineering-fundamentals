@@ -24,6 +24,6 @@ Amar - Wrote and tested the functions for LIC0, LIC1, LIC8, LIC9, LIC10, CMV and
 
 Gustav - Code skeleton for Decide.java and DecideTest.java, smallest radius of three points method, LIC12, LIC13, LIC14, LIC7, refactoring LIC2, PUM method, FUV method
 
-Petter - Wrote and tested the functions LIC2, LIC3, LIC4, LIC6, LIC11, and wrote formal tests for LIC3, LIC4, LIC6 and LIC11. 
+Petter - Wrote and tested the functions LIC2, LIC3, LIC4, LIC6, LIC11, and wrote formal tests for LIC3, LIC4, LIC6 and LIC11. Wrote description to all the tests.
 
 Sida - Wrote and tested the functions LIC5.
