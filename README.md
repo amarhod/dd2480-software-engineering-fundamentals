@@ -18,6 +18,28 @@ The file DecideTest contains all the unit tests for each function. To run it, th
 ./gradlew clean customTest
 ```
 
+### File structure
+
+The code for the Decide functionality is in app/src/main/java/Decide . The code for the test cases are in app/src/test/java/Decide
+
+├── app
+│   └── src
+│       ├── main
+│       │   └── java
+│       │       └── Decide
+│       │           ├── Decide.java
+│       │           ├── LIC.java
+│       │           └── MatrixCalc.java
+│       └── test
+│           └── java
+│               └── Decide
+│                   └── DecideTest.java
+├── gradlew
+├── gradlew.bat
+├── README.md
+└── settings.gradle
+
+
 ### Contributions
 
 Amar - Wrote and tested the functions for LIC0, LIC1, LIC8, LIC9, LIC10, CMV and Decide. Integrated Gradle as our build tool, wrote the first README draft and made various refactoring of the code base.
